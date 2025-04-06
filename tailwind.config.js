@@ -12,10 +12,23 @@ export default {
         poppins: ["Poppins", ...defaultTheme.fontFamily.sans],
       },
       colors: {
-        primary1: "#DBB67C",
-        primary2: "#9C8156",
-        primary3: "#F5D6A5",
-        neutral1: "#7C7C7C",
+        dark: {
+          primary: "#121212",
+          secondary: "#1E1E1E",
+          tertiary: "#2D2D2D",
+        },
+
+        gold: {
+          light: "#FFD700",
+          DEFAULT: "#DAA520",
+          dark: "#B8860B",
+        },
+
+        text: {
+          primary: "#FFFFFF",
+          secondary: "#B3B3B3",
+          gold: "#FFD700",
+        },
       },
     },
   },
