@@ -4,3 +4,18 @@ export interface Jabatan {
   created_at: string;
   updated_at: string;
 }
+
+export interface Divisi {
+  id: number;
+  nama: string;
+  singkatan: string;
+  deskripsi: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface CreateDivisi {
+  nama: string;
+  singkatan: string;
+  deskripsi: string;
+}

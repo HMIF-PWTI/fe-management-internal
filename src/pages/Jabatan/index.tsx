@@ -48,7 +48,7 @@ const JabatanPages = () => {
         setIsLoading(true);
         setError(null);
         const response = await getJabatan();
-        setJabatanData(response.data.payload);
+        setJabatanData(response.data.payload || []);
       } catch (error) {
         console.error("Error Fetching Jabatan : ", error);
         setError("Failed to fetch jabatan data. Please try again later.");
