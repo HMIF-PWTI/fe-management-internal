@@ -16,6 +16,12 @@ const TopBar = () => {
     if (matchPath("/jabatan/update/:id", location.pathname)) {
       return "Ubah Jabatan";
     }
+    if (location.pathname === "/divisi") return "Divisi";
+    if (location.pathname === "/divisi/create") return "Buat Divisi";
+    if (matchPath("/divisi/update/:id", location.pathname)) {
+      return "Ubah Divisi";
+    }
+    
     return "Page Not Found";
   };
 
