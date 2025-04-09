@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdDashboard, MdPeople, MdWork } from "react-icons/md";
+import { FiActivity } from "react-icons/fi";
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -11,6 +12,7 @@ const Sidebar = () => {
     { title: "Dashboard", icon: <MdDashboard />, path: "/" },
     { title: "Jabatan", icon: <MdWork />, path: "/jabatan" },
     { title: "Divisi", icon: <MdPeople />, path: "/divisi" },
+    { title: "Jenis Kegiatan", icon: <FiActivity />, path: "/jeniskegiatan" },
   ];
 
   return (
