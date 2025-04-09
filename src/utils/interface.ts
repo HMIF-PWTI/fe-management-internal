@@ -26,3 +26,14 @@ export interface JenisKegiatan {
   created_at: string;
   updated_at: string;
 }
+export interface JenisKeuangan {
+  id: number;
+  nama: string;
+  deskripsi: string;
+  created_at: string;
+  updated_at: string;
+}
+export interface CreateJenisKeuangan {
+  nama: string;
+  deskripsi: string;
+}
