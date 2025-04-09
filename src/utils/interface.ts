@@ -19,3 +19,10 @@ export interface CreateDivisi {
   singkatan: string;
   deskripsi: string;
 }
+
+export interface JenisKegiatan {
+  id: number;
+  nama: string;
+  created_at: string;
+  updated_at: string;
+}

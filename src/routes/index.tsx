@@ -7,6 +7,9 @@ import EditJabatan from "@/pages/Jabatan/EditJabatan";
 import DivisiPages from "@/pages/Divisi";
 import CreateDivisi from "@/pages/Divisi/CreateDivisi";
 import EditDivisi from "@/pages/Divisi/EditDivisi";
+import JenisKegiatanPages from "@/pages/JenisKegiatan";
+import CreateJenisKegiatan from "@/pages/JenisKegiatan/CreateJenisKegiatan";
+import EditJenisKegiatan from "@/pages/JenisKegiatan/EditJenisKegiatan";
 
 export const routes: RouteObject[] = [
   {
@@ -40,6 +43,18 @@ export const routes: RouteObject[] = [
       {
         path: "divisi/update/:id",
         element: <EditDivisi />,
+      },
+      {
+        path: "jeniskegiatan",
+        element: <JenisKegiatanPages />,
+      },
+      {
+        path: "jeniskegiatan/create",
+        element: <CreateJenisKegiatan />,
+      },
+      {
+        path: "jeniskegiatan/update/:id",
+        element: <EditJenisKegiatan />,
       },
     ],
   },
