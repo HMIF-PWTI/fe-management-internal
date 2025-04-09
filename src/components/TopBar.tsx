@@ -27,6 +27,12 @@ const TopBar = () => {
     if (matchPath("/jeniskegiatan/update/:id", location.pathname)) {
       return "Ubah Jenis Kegiatan";
     }
+    if (location.pathname === "/jeniskeuangan") return "Jenis Keuangan";
+    if (location.pathname === "/jeniskeuangan/create")
+      return "Buat Jenis Keuangan";
+    if (matchPath("/jeniskeuangan/update/:id", location.pathname)) {
+      return "Ubah Jenis Keuangan";
+    }
 
     return "Page Not Found";
   };
