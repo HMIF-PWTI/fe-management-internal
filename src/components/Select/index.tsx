@@ -6,7 +6,6 @@ const Select = ({
   helperText,
   variant = "default",
   options,
-  value,
   className = "",
   ...props
 }: SelectProps) => {

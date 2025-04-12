@@ -5,7 +5,7 @@ import Loading from "@/components/Loading";
 import Select from "@/components/Select";
 import { getDivisi } from "@/service/Divisi";
 import { getJenisKegiatan } from "@/service/JenisKegiatan";
-import { getKegiatanById, postKegiatan, putKegiatan } from "@/service/Kegiatan";
+import { getKegiatanById, putKegiatan } from "@/service/Kegiatan";
 import { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { IoAddOutline } from "react-icons/io5";

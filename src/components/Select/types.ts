@@ -11,5 +11,4 @@ export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   helperText?: string;
   variant?: 'default' | 'outlined';
   options: Option[];
-  value?: string;
 }
