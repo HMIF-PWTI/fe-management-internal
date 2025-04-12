@@ -57,7 +57,7 @@ const EditKegiatan = () => {
   }, []);
 
   useEffect(() => {
-    const fetchJabatan = async () => {
+    const fetchKegiatan = async () => {
       if (!id) return;
       try {
         setIsLoadingData(true);
@@ -81,7 +81,7 @@ const EditKegiatan = () => {
       }
     };
 
-    fetchJabatan();
+    fetchKegiatan();
   }, [id, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {

@@ -39,6 +39,7 @@ export interface Kegiatan {
   kegiatan_berakhir: string;
   tempat_pelaksanaan: string;
   created_at: string;
+  status?: string;
   updated_at: string;
 }
 
@@ -61,4 +62,39 @@ export interface JenisKeuangan {
 export interface CreateJenisKeuangan {
   nama: string;
   deskripsi: string;
+}
+
+export interface Keuangan {
+  id: number;
+  id_jenis_keuangan: string;
+  nama_jenis_keuangan: string;
+  id_divisi: string;
+  nama_divisi: string;
+  tanggal: string;
+  keterangan_dana: string;
+  uang_masuk: string;
+  bukti_uang_masuk: string;
+  uang_keluar: string;
+  bukti_uang_keluar: string;
+  keterangan_tambahan: string;
+  pembuat: string;
+  dana_saat_ini: string;
+  status: string;
+  created_at: string;
+  updated_at: string;
+  approve_bendum?: string;
+  approve_kahim?: string;
+}
+
+export interface CreateKeuangan {
+  id_jenis_keuangan: number;
+  id_divisi: number;
+  tanggal: string;
+  keterangan_dana: string;
+  uang_masuk: string;
+  bukti_uang_masuk: string;
+  uang_keluar: string;
+  bukti_uang_keluar: string;
+  keterangan_tambahan: string;
+  pembuat: string;
 }

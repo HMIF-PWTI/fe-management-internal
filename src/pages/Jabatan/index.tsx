@@ -10,6 +10,7 @@ import Loading from "@/components/Loading";
 import Button from "@/components/Button";
 import Table from "@/components/Table";
 import Swal from "sweetalert2";
+import { formatDate } from "@/utils/FormatDate";
 
 const JabatanPages = () => {
   const [jabatanData, setJabatanData] = useState<Jabatan[]>([]);
@@ -23,12 +24,12 @@ const JabatanPages = () => {
     {
       header: "Created At",
       key: "created_at",
-      render: (value) => new Date(value).toLocaleDateString(),
+      render: formatDate,
     },
     {
       header: "Updated At",
       key: "updated_at",
-      render: (value) => new Date(value).toLocaleDateString(),
+      render: formatDate
     },
     {
       header: "Aksi",

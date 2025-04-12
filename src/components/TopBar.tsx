@@ -36,8 +36,7 @@ const TopBar = () => {
 
     // Kegiatan Pages
     if (location.pathname === "/kegiatan") return "Kegiatan";
-    if (location.pathname === "/kegiatan/create")
-      return "Buat Kegiatan";
+    if (location.pathname === "/kegiatan/create") return "Buat Kegiatan";
     if (matchPath("/kegiatan/update/:id", location.pathname)) {
       return "Ubah Kegiatan";
     }
@@ -51,6 +50,16 @@ const TopBar = () => {
       return "Buat Jenis Keuangan";
     if (matchPath("/jeniskeuangan/update/:id", location.pathname)) {
       return "Ubah Jenis Keuangan";
+    }
+
+    // Keuangan Pages
+    if (location.pathname === "/keuangan") return "Keuangan";
+    if (location.pathname === "/keuangan/create") return "Buat Keuangan";
+    if (matchPath("/keuangan/update/:id", location.pathname)) {
+      return "Ubah Keuangan";
+    }
+    if (matchPath("/keuangan/detail/:id", location.pathname)) {
+      return "Detail Keuangan";
     }
 
     return "Page Not Found";

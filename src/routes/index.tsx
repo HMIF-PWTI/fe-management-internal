@@ -17,6 +17,10 @@ import KegiatanPages from "@/pages/Kegiatan";
 import CreateKegiatan from "@/pages/Kegiatan/CreateKegiatan";
 import EditKegiatan from "@/pages/Kegiatan/EditKegiatan";
 import DetailKegiatan from "@/pages/Kegiatan/DetailKegiatan";
+import KeuanganPages from "@/pages/Keuangan";
+import CreateKeuangan from "@/pages/Keuangan/CreateKeuangan";
+import EditKeuangan from "@/pages/Keuangan/EditKeuangan";
+import DetailKeuangan from "@/pages/Keuangan/DetailKeuangan";
 
 export const routes: RouteObject[] = [
   {
@@ -100,6 +104,24 @@ export const routes: RouteObject[] = [
       {
         path: "jeniskeuangan/update/:id",
         element: <EditJenisKeuangan />,
+      },
+
+      // Keuangan Route
+      {
+        path: "keuangan",
+        element: <KeuanganPages />,
+      },
+      {
+        path: "keuangan/create",
+        element: <CreateKeuangan />,
+      },
+      {
+        path: "keuangan/update/:id",
+        element: <EditKeuangan />,
+      },
+      {
+        path: "keuangan/detail/:id",
+        element: <DetailKeuangan />,
       },
     ],
   },

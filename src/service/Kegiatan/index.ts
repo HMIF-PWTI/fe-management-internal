@@ -23,6 +23,11 @@ export const putKegiatan = async (data: CreateKegiatan, id: number) => {
   return response;
 };
 
+export const putStatusKegiatan = async (id: number) => {
+  const response = await axios.put(`${API_BASE_URL}/kegiatan/${id}/status`);
+  return response;
+};
+
 export const deleteKegiatan = async (id: number) => {
   const response = await axios.delete(`${API_BASE_URL}/kegiatan/${id}`, {});
   return response.data;

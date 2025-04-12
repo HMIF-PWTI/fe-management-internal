@@ -3,7 +3,11 @@ import Button from "@/components/Button";
 import Loading from "@/components/Loading";
 import Table from "@/components/Table";
 import { Column } from "@/components/Table/types";
-import { deleteKegiatan, getKegiatan } from "@/service/Kegiatan";
+import {
+  deleteKegiatan,
+  getKegiatan,
+  putStatusKegiatan,
+} from "@/service/Kegiatan";
 import { Kegiatan } from "@/utils/interface";
 import { formatDateTime } from "@/utils/FormatDate";
 import { useEffect, useState } from "react";
@@ -11,6 +15,7 @@ import { IoAddOutline } from "react-icons/io5";
 import { MdOutlineInbox } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Toggle from "@/components/Toggle";
 
 const KegiatanPages = () => {
   const navigate = useNavigate();
@@ -30,6 +35,17 @@ const KegiatanPages = () => {
       render: formatDateTime,
     },
     {
+      header: "Status",
+      key: "status",
+      render: (_, row) => (
+        <Toggle
+          isOn={row.status === "aktif"}
+          onToggle={() => handleToggleStatus(row.id)}
+        />
+      ),
+    },
+
+    {
       header: "Aksi",
       key: "id",
       render: (_, row) => (
@@ -41,6 +57,29 @@ const KegiatanPages = () => {
       ),
     },
   ];
+
+  const handleToggleStatus = async (id: number) => {
+    try {
+      await putStatusKegiatan(id);
+      setKegiatanData((prevData) =>
+        prevData.map((item) =>
+          item.id === id
+            ? {
+                ...item,
+                status: item.status === "aktif" ? "tidak_aktif" : "aktif",
+              }
+            : item
+        )
+      );
+    } catch (error) {
+      console.error("Error toggling status:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Gagal mengubah status",
+        text: "Silakan coba lagi.",
+      });
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {

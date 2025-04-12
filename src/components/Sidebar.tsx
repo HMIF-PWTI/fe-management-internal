@@ -4,6 +4,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdDashboard, MdOutlineAttachMoney, MdPeople, MdWork } from "react-icons/md";
 import { FiActivity } from "react-icons/fi";
 import { FaGalacticSenate } from "react-icons/fa";
+import { FaMoneyBillAlt } from "react-icons/fa";
 
 
 const Sidebar = () => {
@@ -17,6 +18,7 @@ const Sidebar = () => {
     { title: "Jenis Kegiatan", icon: <FiActivity />, path: "/jeniskegiatan" },
     { title: "Kegiatan", icon: <FaGalacticSenate />, path: "/kegiatan" },
     { title: "Jenis Keuangan", icon: <MdOutlineAttachMoney />, path: "/jeniskeuangan" },
+    { title: "Keuangan", icon: <FaMoneyBillAlt />, path: "/keuangan" },
   ];
 
   return (
