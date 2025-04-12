@@ -3,6 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { MdDashboard, MdOutlineAttachMoney, MdPeople, MdWork } from "react-icons/md";
 import { FiActivity } from "react-icons/fi";
+import { FaGalacticSenate } from "react-icons/fa";
+
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -13,6 +15,7 @@ const Sidebar = () => {
     { title: "Jabatan", icon: <MdWork />, path: "/jabatan" },
     { title: "Divisi", icon: <MdPeople />, path: "/divisi" },
     { title: "Jenis Kegiatan", icon: <FiActivity />, path: "/jeniskegiatan" },
+    { title: "Kegiatan", icon: <FaGalacticSenate />, path: "/kegiatan" },
     { title: "Jenis Keuangan", icon: <MdOutlineAttachMoney />, path: "/jeniskeuangan" },
   ];
 

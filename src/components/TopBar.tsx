@@ -11,22 +11,41 @@ const TopBar = () => {
 
   const getPageTitle = () => {
     if (location.pathname === "/") return "Dashboard";
+
+    // Jabatan Pages
     if (location.pathname === "/jabatan") return "Jabatan";
     if (location.pathname === "/jabatan/create") return "Buat Jabatan";
     if (matchPath("/jabatan/update/:id", location.pathname)) {
       return "Ubah Jabatan";
     }
+
+    // Divisi Pages
     if (location.pathname === "/divisi") return "Divisi";
     if (location.pathname === "/divisi/create") return "Buat Divisi";
     if (matchPath("/divisi/update/:id", location.pathname)) {
       return "Ubah Divisi";
     }
+
+    // Jenis Kegiatan Pages
     if (location.pathname === "/jeniskegiatan") return "Jenis Kegiatan";
     if (location.pathname === "/jeniskegiatan/create")
       return "Buat Jenis Kegiatan";
     if (matchPath("/jeniskegiatan/update/:id", location.pathname)) {
       return "Ubah Jenis Kegiatan";
     }
+
+    // Kegiatan Pages
+    if (location.pathname === "/kegiatan") return "Kegiatan";
+    if (location.pathname === "/kegiatan/create")
+      return "Buat Kegiatan";
+    if (matchPath("/kegiatan/update/:id", location.pathname)) {
+      return "Ubah Kegiatan";
+    }
+    if (matchPath("/kegiatan/detail/:id", location.pathname)) {
+      return "Detail Kegiatan";
+    }
+
+    // Jenis Keuangan Pages
     if (location.pathname === "/jeniskeuangan") return "Jenis Keuangan";
     if (location.pathname === "/jeniskeuangan/create")
       return "Buat Jenis Keuangan";

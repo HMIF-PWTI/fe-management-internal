@@ -13,6 +13,10 @@ import EditJenisKegiatan from "@/pages/JenisKegiatan/EditJenisKegiatan";
 import JenisKeuanganPages from "@/pages/JenisKeuangan";
 import CreateJenisKeuangan from "@/pages/JenisKeuangan/CreateJenisKeuangan";
 import EditJenisKeuangan from "@/pages/JenisKeuangan/EditJenisKeuangan";
+import KegiatanPages from "@/pages/Kegiatan";
+import CreateKegiatan from "@/pages/Kegiatan/CreateKegiatan";
+import EditKegiatan from "@/pages/Kegiatan/EditKegiatan";
+import DetailKegiatan from "@/pages/Kegiatan/DetailKegiatan";
 
 export const routes: RouteObject[] = [
   {
@@ -23,6 +27,8 @@ export const routes: RouteObject[] = [
         index: true,
         element: <Dashboard />,
       },
+
+      // Jabatan Route
       {
         path: "jabatan",
         element: <JabatanPages />,
@@ -35,6 +41,8 @@ export const routes: RouteObject[] = [
         path: "jabatan/update/:id",
         element: <EditJabatan />,
       },
+
+      // Divisi Route
       {
         path: "divisi",
         element: <DivisiPages />,
@@ -47,6 +55,8 @@ export const routes: RouteObject[] = [
         path: "divisi/update/:id",
         element: <EditDivisi />,
       },
+
+      // Jenis Kegiatan Route
       {
         path: "jeniskegiatan",
         element: <JenisKegiatanPages />,
@@ -59,6 +69,26 @@ export const routes: RouteObject[] = [
         path: "jeniskegiatan/update/:id",
         element: <EditJenisKegiatan />,
       },
+
+      // Kegiatan Route
+      {
+        path: "kegiatan",
+        element: <KegiatanPages />,
+      },
+      {
+        path: "kegiatan/create",
+        element: <CreateKegiatan />,
+      },
+      {
+        path: "kegiatan/update/:id",
+        element: <EditKegiatan />,
+      },
+      {
+        path: "kegiatan/detail/:id",
+        element: <DetailKegiatan />,
+      },
+
+      // Jenis Keuangan Route
       {
         path: "jeniskeuangan",
         element: <JenisKeuanganPages />,
