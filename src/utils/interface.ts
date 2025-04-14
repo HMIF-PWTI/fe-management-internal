@@ -98,3 +98,56 @@ export interface CreateKeuangan {
   keterangan_tambahan: string;
   pembuat: string;
 }
+
+export interface Barang {
+  id: number;
+  kode_barang: string;
+  nama: string;
+  deskripsi: string;
+  id_divisi: string;
+  nama_divisi?: string;
+  jenis_barang: string;
+  kondisi: string;
+  lokasi_penyimpanan: string;
+  tanggal_perolehan: string;
+  stok: string;
+  foto_barang: string;
+  status: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface CreateBarang {
+  nama: string;
+  deskripsi: string;
+  id_divisi: string;
+  jenis_barang: string;
+  kondisi: string;
+  lokasi_penyimpanan: string;
+  tanggal_perolehan: string;
+  stok: number;
+  foto_barang: string;
+}
+
+export interface Toko {
+  id: number;
+  nama_toko: string;
+  deskripsi: string;
+  alamat: string;
+  no_telp: string;
+  email: string;
+  instagram: string;
+  logo: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface CreateToko {
+  nama_toko : string;
+  deskripsi: string;
+  alamat: string;
+  no_telp: string;
+  email: string;
+  instagram: string;
+  logo: string;
+}

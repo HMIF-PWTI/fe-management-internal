@@ -2,6 +2,7 @@ import Button from "@/components/Button";
 import DateTimePicker from "@/components/DateTimeInput";
 import ImageInput from "@/components/ImageInput";
 import Input from "@/components/Input";
+import Loading from "@/components/Loading";
 import Select from "@/components/Select";
 import { getDivisi } from "@/service/Divisi";
 import { getJenisKeuangan } from "@/service/JenisKeuangan";
@@ -19,8 +20,8 @@ const EditKeuangan = () => {
   const [jenisKeuangan, setJenisKeuangan] = useState("");
   const [divisi, setDivisi] = useState("");
   const [keteranganDana, setKeteranganDana] = useState("");
-  const [uangMasuk, setUangMasuk] = useState("");
-  const [uangKeluar, setUangKeluar] = useState("");
+  const [uangMasuk, setUangMasuk] = useState<string | number>("");
+  const [uangKeluar, setUangKeluar] = useState<string | number>("");
   const [keteranganTambahan, setKeteranganTambahan] = useState("");
   const [pembuat, setPembuat] = useState("");
   const [buktiUangMasuk, setBuktiUangMasuk] = useState<File | null>(null);
@@ -60,7 +61,7 @@ const EditKeuangan = () => {
   }, []);
 
   useEffect(() => {
-    const fetchKegiatan = async () => {
+    const fetchKeuangan = async () => {
       if (!id) return;
       try {
         setIsLoadingData(true);
@@ -69,9 +70,9 @@ const EditKeuangan = () => {
         setDivisi(dataBeforeRes.data.id_divisi);
         setTanggal(dataBeforeRes.data.tanggal);
         setKeteranganDana(dataBeforeRes.data.keterangan_dana);
-        setUangMasuk(dataBeforeRes.data.uang_masuk);
+        setUangMasuk(Number(dataBeforeRes.data.uang_masuk));
         setBuktiUangMasuk(dataBeforeRes.data.bukti_uang_masuk);
-        setUangKeluar(dataBeforeRes.data.uang_keluar);
+        setUangKeluar(Number(dataBeforeRes.data.uang_keluar));
         setBuktiUangKeluar(dataBeforeRes.data.bukti_uang_keluar);
         setPembuat(dataBeforeRes.data.pembuat);
         setKeteranganTambahan(dataBeforeRes.data.keterangan_tambahan);
@@ -87,7 +88,7 @@ const EditKeuangan = () => {
       }
     };
 
-    fetchKegiatan();
+    fetchKeuangan();
   }, [id, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -105,17 +106,12 @@ const EditKeuangan = () => {
       formData.append("keterangan_tambahan", String(keteranganTambahan));
       formData.append("pembuat", String(pembuat));
 
-      // todo backend harus bisa menerima format string, hapus instaceof File jika backend sudah bisa
-      if (buktiUangMasuk instanceof File) {
+      if (buktiUangMasuk) {
         formData.append("bukti_uang_masuk", buktiUangMasuk);
-      } else {
-        formData.append("bukti_uang_masuk", "");
       }
 
-      if (buktiUangKeluar instanceof File) {
+      if (buktiUangKeluar) {
         formData.append("bukti_uang_keluar", buktiUangKeluar);
-      } else {
-        formData.append("bukti_uang_keluar", "");
       }
 
       await putKeuangan(formData, Number(id));
@@ -133,7 +129,6 @@ const EditKeuangan = () => {
         }
       });
 
-      // reset
       setJenisKeuangan("");
       setDivisi("");
       setTanggal("");
@@ -159,6 +154,9 @@ const EditKeuangan = () => {
     }
   };
 
+  if (isLoadingData) {
+    return <Loading />;
+  }
   return (
     <div className="animate-slide-in p-3 space-y-10">
       <div className="flex justify-end">

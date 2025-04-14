@@ -79,7 +79,11 @@ const ImageInput: React.FC<ImageInputProps> = ({
           onChange={handleFileChange}
         />
         <div className="flex flex-col gap-2">
-          <div className="flex items-center justify-between rounded-xl p-2 bg-transparent border border-gold">
+          <div
+            className={`flex items-center justify-between rounded-xl p-2 bg-transparent border ${
+              fileName ? "border-green-500" : "border-gold"
+            }`}
+          >
             <label
               htmlFor={inputId || "image-input"}
               className="px-4 py-2 bg-transparent border border-gold rounded-md shadow-sm text-sm font-medium text-gold hover:bg-gold hover:text-white cursor-pointer"
@@ -87,7 +91,7 @@ const ImageInput: React.FC<ImageInputProps> = ({
               Pilih File
             </label>
             {fileName ? (
-              <p className="text-sm text-gold ml-3">{fileName}</p>
+              <p className="text-sm text-green-500 ml-3">{fileName}</p>
             ) : (
               <p className="text-sm text-gold ml-3">No File Chosen</p>
             )}

@@ -3,11 +3,28 @@ import { matchPath, useLocation } from "react-router-dom";
 import { MdPerson } from "react-icons/md";
 import Button from "./Button";
 import { AiOutlineLogout } from "react-icons/ai";
+import { getToko } from "@/service/Toko";
 
 const TopBar = () => {
   const location = useLocation();
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [namaToko, setNamaToko] = useState("");
+
+  useEffect(() => {
+    const fetchToko = async () => {
+      try {
+        const response = await getToko();
+        const toko = response.data.payload?.[0];
+        if (toko) {
+          setNamaToko(toko.nama_toko);
+        }
+      } catch (err) {
+        console.error("Gagal mengambil nama toko:", err);
+      }
+    };
+    fetchToko();
+  }, []);
 
   const getPageTitle = () => {
     if (location.pathname === "/") return "Dashboard";
@@ -61,6 +78,19 @@ const TopBar = () => {
     if (matchPath("/keuangan/detail/:id", location.pathname)) {
       return "Detail Keuangan";
     }
+
+    // Barang Pages
+    if (location.pathname === "/barang") return "Barang";
+    if (location.pathname === "/barang/create") return "Buat Barang";
+    if (matchPath("/barang/update/:id", location.pathname)) {
+      return "Ubah Barang";
+    }
+    if (matchPath("/barang/detail/:id", location.pathname)) {
+      return "Detail Barang";
+    }
+
+    // Toko Pages
+    if (location.pathname === "/toko") return namaToko;
 
     return "Page Not Found";
   };

@@ -16,7 +16,7 @@ const DetailKeuangan = () => {
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    const fetchJabatan = async () => {
+    const fetchKeuangan = async () => {
       if (!id) return;
       try {
         setIsLoadingData(true);
@@ -26,15 +26,15 @@ const DetailKeuangan = () => {
         Swal.fire({
           icon: "error",
           title: "Gagal mengambil data",
-          text: "Data kegiatan tidak ditemukan.",
+          text: "Data keuangan tidak ditemukan.",
         });
-        navigate("/kegiatan");
+        navigate("/keuangan");
       } finally {
         setIsLoadingData(false);
       }
     };
 
-    fetchJabatan();
+    fetchKeuangan();
   }, [id, navigate]);
 
   if (isLoadingData) {

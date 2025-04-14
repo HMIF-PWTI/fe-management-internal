@@ -70,6 +70,7 @@ const KeuanganPages = () => {
           variant="outline"
           size="sm"
           onClick={() => handleApproveBendum(row.id)}
+          disabled={row.status !== "menunggu"}
         >
           Setujui
         </Button>
@@ -83,6 +84,7 @@ const KeuanganPages = () => {
           variant="outline"
           size="sm"
           onClick={() => handleApproveKahim(row.id)}
+          disabled={row.status !== "acc_bendum"}
         >
           Setujui
         </Button>
@@ -108,7 +110,7 @@ const KeuanganPages = () => {
       text: "Anda akan menyetujui keuangan ini sebagai Bendum.",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#28a745",
+      confirmButtonColor: "#007bff",
       cancelButtonColor: "#d33",
       confirmButtonText: "Ya, Setujui!",
       cancelButtonText: "Batal",

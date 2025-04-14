@@ -21,6 +21,11 @@ import KeuanganPages from "@/pages/Keuangan";
 import CreateKeuangan from "@/pages/Keuangan/CreateKeuangan";
 import EditKeuangan from "@/pages/Keuangan/EditKeuangan";
 import DetailKeuangan from "@/pages/Keuangan/DetailKeuangan";
+import BarangPages from "@/pages/Barang";
+import CreateBarang from "@/pages/Barang/CreateBarang";
+import EditBarang from "@/pages/Barang/EditBarang";
+import DetailBarang from "@/pages/Barang/DetailBarang";
+import TokoPages from "@/pages/Toko";
 
 export const routes: RouteObject[] = [
   {
@@ -122,6 +127,30 @@ export const routes: RouteObject[] = [
       {
         path: "keuangan/detail/:id",
         element: <DetailKeuangan />,
+      },
+
+      // Barang Route
+      {
+        path: "barang",
+        element: <BarangPages />,
+      },
+      {
+        path: "barang/create",
+        element: <CreateBarang />,
+      },
+      {
+        path: "barang/update/:id",
+        element: <EditBarang />,
+      },
+      {
+        path: "barang/detail/:id",
+        element: <DetailBarang />,
+      },
+
+      // Toko Route
+      {
+        path: "toko",
+        element: <TokoPages />,
       },
     ],
   },
