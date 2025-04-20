@@ -143,11 +143,58 @@ export interface Toko {
 }
 
 export interface CreateToko {
-  nama_toko : string;
+  nama_toko: string;
   deskripsi: string;
   alamat: string;
   no_telp: string;
   email: string;
   instagram: string;
   logo: string;
+}
+
+export interface Surat {
+  id: number;
+  nomor_surat: string;
+  jenis_surat: string;
+  tanggal_surat: string;
+  pengirim: string;
+  penerima: string;
+  perihal_surat: string;
+  file_surat: string;
+  pembuat: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface CreateSurat {
+  nomor_surat: string;
+  jenis_surat: string;
+  tanggal_surat: string;
+  pengirim: string;
+  penerima: string;
+  perihal_surat: string;
+  file_surat: string;
+  pembuat: string;
+}
+
+export interface Product {
+  id: number;
+  toko_id: number;
+  nama_produk: string;
+  deskripsi: string;
+  harga: string;
+  kategori: string;
+  gambar: string;
+  status: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface CreateProduct {
+  toko_id: number;
+  nama_produk: string;
+  deskripsi: string;
+  harga: string;
+  kategori: string;
+  gambar: string;
 }

@@ -1,4 +1,5 @@
 import Button from "@/components/Button";
+import Loading from "@/components/Loading";
 import { getBarangById } from "@/service/Barang";
 import { formatDate } from "@/utils/FormatDate";
 import { Barang } from "@/utils/interface";
@@ -71,6 +72,10 @@ const DetailBarang = () => {
     return <span className={`font-semibold ${color}`}>{label}</span>;
   };
 
+  if (isLoadingData) {
+    return <Loading />;
+  }
+
   return (
     <div className="animate-slide-in p-3 space-y-10">
       <div className="flex justify-end">
@@ -135,11 +140,11 @@ const DetailBarang = () => {
             <td>
               {barang?.foto_barang ? (
                 <a
-                  href={`http://127.0.0.1:8000/storage/${barang?.foto_barang}`}
+                  href={`https://hmif-be.unikom.my.id/storage/${barang?.foto_barang}`}
                   download
                 >
                   <img
-                    src={`http://127.0.0.1:8000/storage/${barang?.foto_barang}`}
+                    src={`https://hmif-be.unikom.my.id/storage/${barang?.foto_barang}`}
                     className="w-20"
                     alt="Foto Barang"
                   />

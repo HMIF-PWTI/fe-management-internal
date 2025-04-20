@@ -2,6 +2,7 @@ import Button from "@/components/Button";
 import DateTimePicker from "@/components/DateTimeInput";
 import ImageInput from "@/components/ImageInput";
 import Input from "@/components/Input";
+import Loading from "@/components/Loading";
 import Select from "@/components/Select";
 import { getBarangById, postBarang, putBarang } from "@/service/Barang";
 import { getDivisi } from "@/service/Divisi";
@@ -67,7 +68,7 @@ const EditBarang = () => {
         Swal.fire({
           icon: "error",
           title: "Gagal mengambil data",
-          text: "Data kegiatan tidak ditemukan.",
+          text: "Data Barang tidak ditemukan.",
         });
         navigate("/barang");
       } finally {
@@ -132,6 +133,10 @@ const EditBarang = () => {
       setLoading(false);
     }
   };
+
+  if (isLoadingData) {
+    return <Loading />;
+  }
 
   return (
     <div className="animate-slide-in p-3 space-y-10">

@@ -4,6 +4,7 @@ import Input from "@/components/Input";
 import Loading from "@/components/Loading";
 import { getToko, putToko } from "@/service/Toko";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const TokoPages = () => {
@@ -20,6 +21,7 @@ const TokoPages = () => {
   const [logoFile, setLogoFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [loadingData, setLoadingData] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoadingData(true);
@@ -94,7 +96,7 @@ const TokoPages = () => {
           imageUrl={
             logoFile
               ? URL.createObjectURL(logoFile)
-              : `http://127.0.0.1:8000/storage/${dataToko.logo}`
+              : `https://hmif-be.unikom.my.id/storage/${dataToko.logo}`
           }
           onImageChange={(file) => setLogoFile(file)}
         />
@@ -106,6 +108,7 @@ const TokoPages = () => {
             onChange={(e) =>
               setDataToko((prev) => ({ ...prev, nama_toko: e.target.value }))
             }
+            variant="outlined"
           />
           <Input
             label="Deskripsi"
@@ -113,6 +116,7 @@ const TokoPages = () => {
             onChange={(e) =>
               setDataToko((prev) => ({ ...prev, deskripsi: e.target.value }))
             }
+            variant="outlined"
           />
           <Input
             label="Alamat"
@@ -120,6 +124,7 @@ const TokoPages = () => {
             onChange={(e) =>
               setDataToko((prev) => ({ ...prev, alamat: e.target.value }))
             }
+            variant="outlined"
           />
           <Input
             label="No Telp"
@@ -127,6 +132,7 @@ const TokoPages = () => {
             onChange={(e) =>
               setDataToko((prev) => ({ ...prev, no_telp: e.target.value }))
             }
+            variant="outlined"
           />
           <Input
             label="Email"
@@ -134,6 +140,7 @@ const TokoPages = () => {
             onChange={(e) =>
               setDataToko((prev) => ({ ...prev, email: e.target.value }))
             }
+            variant="outlined"
           />
           <Input
             label="Instagram"
@@ -141,9 +148,19 @@ const TokoPages = () => {
             onChange={(e) =>
               setDataToko((prev) => ({ ...prev, instagram: e.target.value }))
             }
+            variant="outlined"
           />
         </div>
-        <div className="flex justify-end">
+        <div className="flex justify-between">
+          <Button
+            variant="outline"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/product");
+            }}
+          >
+            Kelola Produk
+          </Button>
           <Button variant="outline" isLoading={loading} onClick={handleSubmit}>
             Simpan
           </Button>

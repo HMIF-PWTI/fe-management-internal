@@ -13,6 +13,8 @@ import { FaMoneyBillAlt } from "react-icons/fa";
 import { FaBoxOpen } from "react-icons/fa";
 import { getToko } from "@/service/Toko";
 import { HiBuildingStorefront } from "react-icons/hi2";
+import { FaRegCalendarCheck } from "react-icons/fa";
+import { CiPaperplane } from "react-icons/ci";
 
 
 const Sidebar = () => {
@@ -34,7 +36,6 @@ const Sidebar = () => {
     };
     fetchToko();
   }, []);
-  
 
   const menuItems = [
     { title: "Dashboard", icon: <MdDashboard />, path: "/" },
@@ -50,6 +51,8 @@ const Sidebar = () => {
     { title: "Keuangan", icon: <FaMoneyBillAlt />, path: "/keuangan" },
     { title: "Barang", icon: <FaBoxOpen />, path: "/barang" },
     { title: namaToko, icon: <HiBuildingStorefront />, path: "/toko" },
+    { title: "Absensi", icon: <FaRegCalendarCheck />, path: "/absensi" },
+    { title: "Surat", icon: <CiPaperplane />, path: "/surat" },
   ];
 
   return (

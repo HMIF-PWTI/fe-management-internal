@@ -92,6 +92,29 @@ const TopBar = () => {
     // Toko Pages
     if (location.pathname === "/toko") return namaToko;
 
+    // Absensi Pages
+    if (location.pathname === "/absensi") return "Absensi";
+
+    // Surat Pages
+    if (location.pathname === "/surat") return "Surat";
+    if (location.pathname === "/surat/create") return "Buat Surat";
+    if (matchPath("/surat/update/:id", location.pathname)) {
+      return "Edit Surat";
+    }
+    if (matchPath("/surat/detail/:id", location.pathname)) {
+      return "Detail Surat";
+    }
+
+    // Product Pages
+    if (location.pathname === "/product") return "Kelola Produk";
+    if (location.pathname === "/product/create") return "Buat Produk";
+    if (matchPath("/product/update/:id", location.pathname)) {
+      return "Edit Produk";
+    }
+    if (matchPath("/product/detail/:id", location.pathname)) {
+      return "Detail Produk";
+    }
+
     return "Page Not Found";
   };
 

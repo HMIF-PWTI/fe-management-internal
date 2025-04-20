@@ -210,7 +210,7 @@ const EditKeuangan = () => {
           label={"Bukti Uang Masuk"}
           inputId="bukti-uang-masuk"
           onImageChange={setBuktiUangMasuk}
-          previewUrl={`http://127.0.0.1:8000/storage/${buktiUangMasuk}`}
+          previewUrl={`https://hmif-be.unikom.my.id/storage/${buktiUangMasuk}`}
         />
         <Input
           label="Uang Keluar"
@@ -224,7 +224,7 @@ const EditKeuangan = () => {
           label={"Bukti Uang Keluar"}
           inputId="bukti-uang-keluar"
           onImageChange={setBuktiUangKeluar}
-          previewUrl={`http://127.0.0.1:8000/storage/${buktiUangKeluar}`}
+          previewUrl={`https://hmif-be.unikom.my.id/storage/${buktiUangKeluar}`}
         />
         <Input
           label="Keterangan Tambahan"

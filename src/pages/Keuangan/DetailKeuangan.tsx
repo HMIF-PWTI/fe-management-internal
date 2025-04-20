@@ -113,11 +113,11 @@ const DetailKeuangan = () => {
             <td>
               {keuanganData?.bukti_uang_masuk ? (
                 <a
-                  href={`http://127.0.0.1:8000/storage/${keuanganData?.bukti_uang_masuk}`}
+                  href={`https://hmif-be.unikom.my.id/storage/${keuanganData?.bukti_uang_masuk}`}
                   download
                 >
                   <img
-                    src={`http://127.0.0.1:8000/storage/${keuanganData?.bukti_uang_masuk}`}
+                    src={`https://hmif-be.unikom.my.id/storage/${keuanganData?.bukti_uang_masuk}`}
                     className="w-20"
                     alt="Bukti Uang Masuk"
                   />
@@ -138,11 +138,11 @@ const DetailKeuangan = () => {
             <td>
               {keuanganData?.bukti_uang_keluar ? (
                 <a
-                  href={`http://127.0.0.1:8000/storage/${keuanganData?.bukti_uang_keluar}`}
+                  href={`https://hmif-be.unikom.my.id/storage/${keuanganData?.bukti_uang_keluar}`}
                   download
                 >
                   <img
-                    src={`http://127.0.0.1:8000/storage/${keuanganData?.bukti_uang_keluar}`}
+                    src={`https://hmif-be.unikom.my.id/storage/${keuanganData?.bukti_uang_keluar}`}
                     className="w-20"
                     alt="Bukti Uang Keluar"
                   />
