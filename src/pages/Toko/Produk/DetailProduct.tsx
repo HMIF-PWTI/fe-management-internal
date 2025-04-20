@@ -1,40 +1,19 @@
 import Button from "@/components/Button";
 import Loading from "@/components/Loading";
-import { getKegiatanById } from "@/service/Kegiatan";
-import { formatDate, formatDateTime } from "@/utils/FormatDate";
-import { Kegiatan } from "@/utils/interface";
+import { getProductById } from "@/service/Product";
+import { formatDate } from "@/utils/FormatDate";
+import { formatRupiah } from "@/utils/FormatRupiah";
+import { Product } from "@/utils/interface";
 import { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const DetailKegiatan = () => {
+const DetailProduct = () => {
   const navigate = useNavigate();
-  const [kegiatanData, setKegiatanData] = useState<Kegiatan | null>(null);
+  const [product, setProduct] = useState<Product | null>(null);
   const [isLoadingData, setIsLoadingData] = useState(true);
   const { id } = useParams<{ id: string }>();
-
-  useEffect(() => {
-    const fetchJabatan = async () => {
-      if (!id) return;
-      try {
-        setIsLoadingData(true);
-        const response = await getKegiatanById(Number(id));
-        setKegiatanData(response.data.payload);
-      } catch (err) {
-        Swal.fire({
-          icon: "error",
-          title: "Gagal mengambil data",
-          text: "Data kegiatan tidak ditemukan.",
-        });
-        navigate("/kegiatan");
-      } finally {
-        setIsLoadingData(false);
-      }
-    };
-
-    fetchJabatan();
-  }, [id, navigate]);
 
   const renderStatus = (status: string | undefined) => {
     if (!status) return "-";
@@ -60,6 +39,28 @@ const DetailKegiatan = () => {
     return <span className={`font-semibold ${color}`}>{label}</span>;
   };
 
+  useEffect(() => {
+    const fetchProduct = async () => {
+      if (!id) return;
+      try {
+        setIsLoadingData(true);
+        const response = await getProductById(Number(id));
+        setProduct(response.data.payload);
+      } catch (err) {
+        Swal.fire({
+          icon: "error",
+          title: "Gagal mengambil data",
+          text: "Data produk tidak ditemukan.",
+        });
+        navigate("/product");
+      } finally {
+        setIsLoadingData(false);
+      }
+    };
+
+    fetchProduct();
+  }, [id, navigate]);
+
   if (isLoadingData) {
     return <Loading />;
   }
@@ -78,54 +79,59 @@ const DetailKegiatan = () => {
       <div className="border p-3 border-dark-tertiary rounded-lg">
         <table>
           <tr>
-            <td>Nama Kegiatan</td>
+            <td>Nama Produk</td>
             <td className="pl-3 pr-3">:</td>
-            <td>{kegiatanData?.nama}</td>
+            <td>{product?.nama_produk}</td>
           </tr>
           <tr>
-            <td>Jenis Kegiatan</td>
+            <td>Deskripsi</td>
             <td className="pl-3 pr-3">:</td>
-            <td>{kegiatanData?.nama_jenis_kegiatan}</td>
+            <td>{product?.deskripsi}</td>
           </tr>
           <tr>
-            <td>Nama Divisi</td>
+            <td>Harga</td>
             <td className="pl-3 pr-3">:</td>
-            <td>{kegiatanData?.nama_divisi}</td>
+            <td>{formatRupiah(product?.harga)}</td>
           </tr>
           <tr>
-            <td>Tanggal Pelaksanaan</td>
+            <td>Kategori</td>
             <td className="pl-3 pr-3">:</td>
-            <td>{formatDate(kegiatanData?.tanggal_pelaksanaan || "")}</td>
+            <td>{product?.kategori}</td>
           </tr>
           <tr>
-            <td>Tanggal Mulai Kegiatan</td>
+            <td>Gambar Product</td>
             <td className="pl-3 pr-3">:</td>
-            <td>{formatDateTime(kegiatanData?.kegiatan_mulai || "")}</td>
-          </tr>
-          <tr>
-            <td>Tanggal berakhir Kegiatan</td>
-            <td className="pl-3 pr-3">:</td>
-            <td>{formatDateTime(kegiatanData?.kegiatan_berakhir || "")}</td>
-          </tr>
-          <tr>
-            <td>Tempat Pelaksanaan</td>
-            <td className="pl-3 pr-3">:</td>
-            <td>{kegiatanData?.tempat_pelaksanaan}</td>
+            <td>
+              {product?.gambar ? (
+                <a
+                  href={`https://hmif-be.unikom.my.id/storage/${product.gambar}`}
+                  download
+                >
+                  <img
+                    src={`https://hmif-be.unikom.my.id/storage/${product.gambar}`}
+                    className="w-20"
+                    alt="Foto Barang"
+                  />
+                </a>
+              ) : (
+                <span>-</span>
+              )}
+            </td>
           </tr>
           <tr>
             <td>Status</td>
             <td className="pl-3 pr-3">:</td>
-            <td>{renderStatus(kegiatanData?.status)}</td>
+            <td>{renderStatus(product?.status)}</td>
           </tr>
           <tr>
             <td>Created At</td>
             <td className="pl-3 pr-3">:</td>
-            <td>{formatDate(kegiatanData?.created_at || "")}</td>
+            <td>{formatDate(product?.created_at || "")}</td>
           </tr>
           <tr>
             <td>Updated At</td>
             <td className="pl-3 pr-3">:</td>
-            <td>{formatDate(kegiatanData?.updated_at || "")}</td>
+            <td>{formatDate(product?.updated_at || "")}</td>
           </tr>
         </table>
       </div>
@@ -133,4 +139,4 @@ const DetailKegiatan = () => {
   );
 };
 
-export default DetailKegiatan;
+export default DetailProduct;

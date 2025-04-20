@@ -1,14 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
-import { MdDashboard, MdOutlineAttachMoney, MdPeople, MdWork } from "react-icons/md";
+import {
+  MdDashboard,
+  MdOutlineAttachMoney,
+  MdPeople,
+  MdWork,
+} from "react-icons/md";
 import { FiActivity } from "react-icons/fi";
 import { FaGalacticSenate } from "react-icons/fa";
+import { FaMoneyBillAlt } from "react-icons/fa";
+import { FaBoxOpen } from "react-icons/fa";
+import { getToko } from "@/service/Toko";
+import { HiBuildingStorefront } from "react-icons/hi2";
+import { FaRegCalendarCheck } from "react-icons/fa";
+import { CiPaperplane } from "react-icons/ci";
 
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const location = useLocation();
+  const [namaToko, setNamaToko] = useState("");
+
+  useEffect(() => {
+    const fetchToko = async () => {
+      try {
+        const response = await getToko();
+        const toko = response.data.payload?.[0];
+        if (toko) {
+          setNamaToko(toko.nama_toko);
+        }
+      } catch (err) {
+        console.error("Gagal mengambil nama toko:", err);
+      }
+    };
+    fetchToko();
+  }, []);
 
   const menuItems = [
     { title: "Dashboard", icon: <MdDashboard />, path: "/" },
@@ -16,7 +43,16 @@ const Sidebar = () => {
     { title: "Divisi", icon: <MdPeople />, path: "/divisi" },
     { title: "Jenis Kegiatan", icon: <FiActivity />, path: "/jeniskegiatan" },
     { title: "Kegiatan", icon: <FaGalacticSenate />, path: "/kegiatan" },
-    { title: "Jenis Keuangan", icon: <MdOutlineAttachMoney />, path: "/jeniskeuangan" },
+    {
+      title: "Jenis Keuangan",
+      icon: <MdOutlineAttachMoney />,
+      path: "/jeniskeuangan",
+    },
+    { title: "Keuangan", icon: <FaMoneyBillAlt />, path: "/keuangan" },
+    { title: "Barang", icon: <FaBoxOpen />, path: "/barang" },
+    { title: namaToko, icon: <HiBuildingStorefront />, path: "/toko" },
+    { title: "Absensi", icon: <FaRegCalendarCheck />, path: "/absensi" },
+    { title: "Surat", icon: <CiPaperplane />, path: "/surat" },
   ];
 
   return (

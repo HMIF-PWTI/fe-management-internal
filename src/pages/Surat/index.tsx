@@ -1,42 +1,37 @@
-import { useEffect, useState } from "react";
-import { MdOutlineInbox } from "react-icons/md";
-import { IoAddOutline } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
 import ActionButton from "@/components/ActionButton";
-import { Jabatan } from "@/utils/interface";
-import { Column } from "@/components/Table/types";
-import { deleteJabatan, getJabatan } from "@/service/Jabatan";
-import Loading from "@/components/Loading";
 import Button from "@/components/Button";
+import Loading from "@/components/Loading";
 import Table from "@/components/Table";
+import { Column } from "@/components/Table/types";
+import { deleteSurat, getSurat } from "@/service/Surat";
+import { Surat } from "@/utils/interface";
+import { useEffect, useState } from "react";
+import { IoAddOutline } from "react-icons/io5";
+import { MdOutlineInbox } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { formatDate } from "@/utils/FormatDate";
 
-const JabatanPages = () => {
-  const [jabatanData, setJabatanData] = useState<Jabatan[]>([]);
+const SuratPages = () => {
+  const [suratData, setSuratData] = useState<Surat[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const columns: Column<Jabatan>[] = [
+  const columns: Column<Surat>[] = [
     { header: "No", key: "no" },
-    { header: "Nama Jabatan", key: "nama" },
-    {
-      header: "Created At",
-      key: "created_at",
-      render: formatDate,
-    },
-    {
-      header: "Updated At",
-      key: "updated_at",
-      render: formatDate
-    },
+    { header: "Nomor Surat", key: "nomor_surat" },
+    { header: "Jenis Surat", key: "jenis_surat" },
+    { header: "Tanggal Surat", key: "tanggal_surat" },
+    { header: "Pengirim", key: "pengirim" },
+    { header: "Penerima", key: "penerima" },
+    { header: "Pembuat", key: "pembuat" },
     {
       header: "Aksi",
       key: "id",
       render: (_, row) => (
         <ActionButton
-          updatePath={`/jabatan/update/${row.id}`}
+          detailPath={`/surat/detail/${row.id}`}
+          updatePath={`/surat/update/${row.id}`}
           onDelete={() => handleDelete(row.id)}
         />
       ),
@@ -48,11 +43,13 @@ const JabatanPages = () => {
       try {
         setIsLoading(true);
         setError(null);
-        const response = await getJabatan();
-        setJabatanData(response.data.payload || []);
+        const response = await getSurat();
+        setSuratData(response.data.payload || []);
       } catch (error) {
-        console.error("Error Fetching Jabatan : ", error);
-        setError("Failed to fetch jabatan data. Please try again later.");
+        console.error("Error Fetching Jenis Kegiatan : ", error);
+        setError(
+          "Failed to fetch Jenis Kegiatan data. Please try again later."
+        );
       } finally {
         setIsLoading(false);
       }
@@ -74,11 +71,9 @@ const JabatanPages = () => {
 
     if (result.isConfirmed) {
       try {
-        const response = await deleteJabatan(id);
+        const response = await deleteSurat(id);
 
-        setJabatanData((prevData) =>
-          prevData.filter((jabatan) => jabatan.id !== id)
-        );
+        setSuratData((prevData) => prevData.filter((surat) => surat.id !== id));
 
         Swal.fire({
           title: "Berhasil!",
@@ -87,17 +82,16 @@ const JabatanPages = () => {
           confirmButtonText: "OK",
         });
       } catch (error) {
-        console.error("Error deleting jabatan:", error);
+        console.error("Error deleting surat:", error);
         Swal.fire({
           title: "Gagal!",
-          text: "Gagal menghapus jabatan. Silakan coba lagi.",
+          text: "Gagal menghapus surat. Silakan coba lagi.",
           icon: "error",
           confirmButtonText: "OK",
         });
       }
     }
   };
-
   if (isLoading) {
     return <Loading />;
   }
@@ -115,21 +109,21 @@ const JabatanPages = () => {
           iconPosition="right"
           onClick={() => navigate("create")}
         >
-          Buat Jabatan
+          Buat Surat
         </Button>
       </div>
 
-      {jabatanData.length === 0 ? (
+      {suratData.length === 0 ? (
         <div className="flex flex-col items-center justify-center min-h-[400px] text-text-secondary">
           <MdOutlineInbox className="w-16 h-16 mb-4 text-dark-tertiary" />
-          <p className="text-lg font-medium">Tidak ada data jabatan</p>
-          <p className="text-sm mt-2">Data jabatan belum tersedia saat ini</p>
+          <p className="text-lg font-medium">Tidak ada data Surat</p>
+          <p className="text-sm mt-2">Data Surat belum tersedia saat ini</p>
         </div>
       ) : (
-        <Table data={jabatanData} columns={columns} />
+        <Table data={suratData} columns={columns} />
       )}
     </div>
   );
 };
 
-export default JabatanPages;
+export default SuratPages;

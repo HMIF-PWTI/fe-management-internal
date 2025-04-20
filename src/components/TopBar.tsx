@@ -3,11 +3,28 @@ import { matchPath, useLocation } from "react-router-dom";
 import { MdPerson } from "react-icons/md";
 import Button from "./Button";
 import { AiOutlineLogout } from "react-icons/ai";
+import { getToko } from "@/service/Toko";
 
 const TopBar = () => {
   const location = useLocation();
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [namaToko, setNamaToko] = useState("");
+
+  useEffect(() => {
+    const fetchToko = async () => {
+      try {
+        const response = await getToko();
+        const toko = response.data.payload?.[0];
+        if (toko) {
+          setNamaToko(toko.nama_toko);
+        }
+      } catch (err) {
+        console.error("Gagal mengambil nama toko:", err);
+      }
+    };
+    fetchToko();
+  }, []);
 
   const getPageTitle = () => {
     if (location.pathname === "/") return "Dashboard";
@@ -36,8 +53,7 @@ const TopBar = () => {
 
     // Kegiatan Pages
     if (location.pathname === "/kegiatan") return "Kegiatan";
-    if (location.pathname === "/kegiatan/create")
-      return "Buat Kegiatan";
+    if (location.pathname === "/kegiatan/create") return "Buat Kegiatan";
     if (matchPath("/kegiatan/update/:id", location.pathname)) {
       return "Ubah Kegiatan";
     }
@@ -51,6 +67,52 @@ const TopBar = () => {
       return "Buat Jenis Keuangan";
     if (matchPath("/jeniskeuangan/update/:id", location.pathname)) {
       return "Ubah Jenis Keuangan";
+    }
+
+    // Keuangan Pages
+    if (location.pathname === "/keuangan") return "Keuangan";
+    if (location.pathname === "/keuangan/create") return "Buat Keuangan";
+    if (matchPath("/keuangan/update/:id", location.pathname)) {
+      return "Ubah Keuangan";
+    }
+    if (matchPath("/keuangan/detail/:id", location.pathname)) {
+      return "Detail Keuangan";
+    }
+
+    // Barang Pages
+    if (location.pathname === "/barang") return "Barang";
+    if (location.pathname === "/barang/create") return "Buat Barang";
+    if (matchPath("/barang/update/:id", location.pathname)) {
+      return "Ubah Barang";
+    }
+    if (matchPath("/barang/detail/:id", location.pathname)) {
+      return "Detail Barang";
+    }
+
+    // Toko Pages
+    if (location.pathname === "/toko") return namaToko;
+
+    // Absensi Pages
+    if (location.pathname === "/absensi") return "Absensi";
+
+    // Surat Pages
+    if (location.pathname === "/surat") return "Surat";
+    if (location.pathname === "/surat/create") return "Buat Surat";
+    if (matchPath("/surat/update/:id", location.pathname)) {
+      return "Edit Surat";
+    }
+    if (matchPath("/surat/detail/:id", location.pathname)) {
+      return "Detail Surat";
+    }
+
+    // Product Pages
+    if (location.pathname === "/product") return "Kelola Produk";
+    if (location.pathname === "/product/create") return "Buat Produk";
+    if (matchPath("/product/update/:id", location.pathname)) {
+      return "Edit Produk";
+    }
+    if (matchPath("/product/detail/:id", location.pathname)) {
+      return "Detail Produk";
     }
 
     return "Page Not Found";

@@ -1,75 +1,60 @@
 import Button from "@/components/Button";
+import ImageInput from "@/components/ImageInput";
 import Input from "@/components/Input";
-import Loading from "@/components/Loading";
-import { getDivisiById, putDivisi } from "@/service/Divisi";
-import { useEffect, useState } from "react";
+import { postProduct } from "@/service/Product";
+import { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { IoAddOutline } from "react-icons/io5";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const EditDivisi = () => {
+const CreateProduct = () => {
   const navigate = useNavigate();
   const [nama, setNama] = useState("");
-  const [singkatan, setSingkatan] = useState("");
   const [deskripsi, setDeskripsi] = useState("");
+  const [harga, setHarga] = useState("");
+  const [kategori, setKategori] = useState("");
+  const [gambar, setGambar] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
-  const [isLoadingData, setIsLoadingData] = useState(true);
-  const { id } = useParams<{ id: string }>();
-
-  useEffect(() => {
-    const fetchDivisi = async () => {
-      if (!id) return;
-      try {
-        setIsLoadingData(true);
-        const response = await getDivisiById(Number(id));
-        setNama(response.data.payload.nama || "");
-        setSingkatan(response.data.payload.singkatan || "");
-        setDeskripsi(response.data.payload.deskripsi || "");
-      } catch (err) {
-        Swal.fire({
-          icon: "error",
-          title: "Gagal mengambil data",
-          text: "Data divisi tidak ditemukan.",
-        });
-        navigate("/divisi");
-      } finally {
-        setIsLoadingData(false);
-      }
-    };
-
-    fetchDivisi();
-  }, [id, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
-      const data = {
-        nama,
-        singkatan,
-        deskripsi,
-      };
+      const formData = new FormData();
+      formData.append("nama_produk", nama);
+      formData.append("deskripsi", deskripsi);
+      formData.append("harga", harga);
+      formData.append("kategori", kategori);
+      formData.append("toko_id", "1");
 
-      await putDivisi(data, Number(id));
+      if (gambar) {
+        formData.append("gambar", gambar);
+      }
 
+      await postProduct(formData);
       Swal.fire({
         icon: "success",
-        title: "Divisi berhasil diubah!",
+        title: "Produk berhasil ditambahkan!",
         showConfirmButton: true,
         customClass: {
           popup: "custom-popup",
         },
       }).then((result) => {
         if (result.isConfirmed) {
-          navigate("/divisi");
+          navigate(-1);
         }
       });
+      setNama("");
+      setDeskripsi("");
+      setHarga("");
+      setKategori("");
+      setGambar(null);
     } catch (err) {
       Swal.fire({
         icon: "error",
-        title: "Gagal mengubah divisi",
+        title: "Gagal menambahkan produk",
         text: "Silakan coba lagi.",
         customClass: {
           popup: "custom-popup",
@@ -79,10 +64,6 @@ const EditDivisi = () => {
       setLoading(false);
     }
   };
-
-  if (isLoadingData) {
-    return <Loading />;
-  }
 
   return (
     <div className="animate-slide-in p-3 space-y-10">
@@ -97,28 +78,38 @@ const EditDivisi = () => {
       </div>
       <form onSubmit={handleSubmit} className="space-y-5 w-1/4">
         <Input
-          label="Nama Divisi"
-          type="text"
-          placeholder="Masukkan Nama Divisi"
+          label="Nama Produk"
           variant="outlined"
           value={nama}
+          placeholder="Masukkan Nama Produk"
           onChange={(e) => setNama(e.target.value)}
         />
         <Input
-          label="Singkatan"
-          type="text"
-          placeholder="Masukkan Singkatan"
-          variant="outlined"
-          value={singkatan}
-          onChange={(e) => setSingkatan(e.target.value)}
-        />
-        <Input
           label="Deskripsi"
-          type="text"
-          placeholder="Masukkan Deskripsi"
           variant="outlined"
           value={deskripsi}
+          placeholder="Masukkan Deskripsi"
           onChange={(e) => setDeskripsi(e.target.value)}
+        />
+        <Input
+          type="number"
+          label="Harga"
+          variant="outlined"
+          value={harga}
+          placeholder="Masukkan Harga"
+          onChange={(e) => setHarga(e.target.value)}
+        />
+        <Input
+          label="Kategori"
+          variant="outlined"
+          value={kategori}
+          placeholder="Masukkan Kategori"
+          onChange={(e) => setKategori(e.target.value)}
+        />
+        <ImageInput
+          label={"Foto Produk"}
+          inputId="foto-produk"
+          onImageChange={setGambar}
         />
         <Button
           type="submit"
@@ -127,11 +118,11 @@ const EditDivisi = () => {
           disabled={loading}
           isLoading={loading}
         >
-          Ubah Divisi
+          Buat Produk
         </Button>
       </form>
     </div>
   );
 };
 
-export default EditDivisi;
+export default CreateProduct;

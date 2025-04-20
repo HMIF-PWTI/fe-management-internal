@@ -4,6 +4,7 @@ import Loading from "@/components/Loading";
 import Table from "@/components/Table";
 import { Column } from "@/components/Table/types";
 import { deleteDivisi, getDivisi } from "@/service/Divisi";
+import { formatDate } from "@/utils/FormatDate";
 import { Divisi } from "@/utils/interface";
 import { useEffect, useState } from "react";
 import { IoAddOutline } from "react-icons/io5";
@@ -25,12 +26,12 @@ const DivisiPages = () => {
     {
       header: "Created At",
       key: "created_at",
-      render: (value) => new Date(value).toLocaleDateString(),
+      render: formatDate,
     },
     {
       header: "Updated At",
       key: "updated_at",
-      render: (value) => new Date(value).toLocaleDateString(),
+      render: formatDate,
     },
     {
       header: "Aksi",
