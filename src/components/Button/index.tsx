@@ -16,7 +16,7 @@ const Button = ({
     "rounded-lg font-medium transition-colors focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2";
 
   const variants = {
-    primary: "bg-gold hover:bg-gold-dark text-dark-primary focus:ring-gold",
+    primary: "bg-gold hover:bg-gold-dark text-white focus:ring-gold",
     secondary:
       "bg-dark-secondary hover:bg-dark-tertiary text-text-primary focus:ring-dark-tertiary",
     outline:

@@ -35,14 +35,26 @@ import ProductPage from "@/pages/Toko/Produk";
 import CreateProduct from "@/pages/Toko/Produk/CreateProduct";
 import DetailProduct from "@/pages/Toko/Produk/DetailProduct";
 import EditProduct from "@/pages/Toko/Produk/EditProduct";
+import LoginPage from "@/pages/Login";
+import RegisterPage from "@/pages/Register";
 
 export const routes: RouteObject[] = [
+  {
+    path: "/",
+    element: <LoginPage />,
+  },
+  {
+    path: "/register",
+    element: <RegisterPage />,
+  },
+
+  // Route dengan RootLayout
   {
     path: "/",
     element: <RootLayout />,
     children: [
       {
-        index: true,
+        path: "dashboard",
         element: <Dashboard />,
       },
 
