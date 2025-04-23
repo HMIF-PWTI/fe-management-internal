@@ -198,3 +198,50 @@ export interface CreateProduct {
   kategori: string;
   gambar: string;
 }
+
+export interface Absensi {
+  id: number;
+  id_user: number;
+  id_kegiatan: number;
+  periode_absen: string;
+  status: string;
+  jam_masuk: string;
+  jam_keluar: string;
+  created_at: string;
+  updated_at: string;
+  user: {
+    id: number;
+    nama: string;
+  }
+  kegiatan: {
+    id: number;
+    nama: string;
+  };
+}
+
+export interface Uid {
+  id: number;
+  uid: string;
+  nama: string;
+  status: string;
+  waktu: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface Anggota {
+  id: number;
+  nama: string;
+  uid: string;
+  email: string;
+  tanggal_lahir: string;
+  alamat: string;
+  status_keanggotaan: string;
+  id_divisi: number;
+  nama_divisi: string;
+  id_jabatan: number | null;
+  nama_jabatan: string;
+  partisipasi_Kegiatan: string;
+  created_at: string;
+  updated_at: string;
+}

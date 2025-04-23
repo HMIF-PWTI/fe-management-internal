@@ -8,6 +8,11 @@ export const getKegiatan = async () => {
   return response;
 };
 
+export const getKegiatanAktif = async () => {
+  const response = await axios.get(`${API_BASE_URL}/kegiatan/aktif`, {});
+  return response;
+};
+
 export const getKegiatanById = async (id: number) => {
   const response = await axios.get(`${API_BASE_URL}/kegiatan/${id}`, {});
   return response;

@@ -119,6 +119,20 @@ const TopBar = () => {
       return "Detail Produk";
     }
 
+    // Keanggotaan Pages
+    if (location.pathname === "/cek-kartu") return "Cek Kartu";
+    if (matchPath("/cek-kartu/daftar/:id", location.pathname)) {
+      return "Daftarkan Anggota";
+    }
+
+    // Keanggotaan Pages
+    if (location.pathname === "/keanggotaan") return "Keanggotaan";
+    if (matchPath("/cek-kartu/daftar/:id", location.pathname)) {
+      return "Daftarkan Anggota";
+    }
+
+
+
     return "Page Not Found";
   };
 
@@ -192,7 +206,8 @@ const TopBar = () => {
         </button>
         {showDropdown && (
           <div className="animate-slide-in absolute p-3 rounded-lg bg-dark-secondary right-0 mt-4 w-52 space-y-5 z-50">
-            <h1>Hello {nama}</h1>
+            <h1 className="text-center">Hello,</h1>
+            <h2 className="text-center">{nama}</h2>
             <Button
               variant="outline"
               icon={<AiOutlineLogout className="text-lg" />}
