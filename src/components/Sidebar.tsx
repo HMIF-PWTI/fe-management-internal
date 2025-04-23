@@ -15,6 +15,10 @@ import { getToko } from "@/service/Toko";
 import { HiBuildingStorefront } from "react-icons/hi2";
 import { FaRegCalendarCheck } from "react-icons/fa";
 import { CiPaperplane } from "react-icons/ci";
+import { FaPeopleGroup } from "react-icons/fa6";
+import { FaRegAddressCard } from "react-icons/fa";
+
+
 
 
 const Sidebar = () => {
@@ -53,6 +57,8 @@ const Sidebar = () => {
     { title: namaToko, icon: <HiBuildingStorefront />, path: "/toko" },
     { title: "Absensi", icon: <FaRegCalendarCheck />, path: "/absensi" },
     { title: "Surat", icon: <CiPaperplane />, path: "/surat" },
+    { title: "Cek Kartu", icon: <FaRegAddressCard />, path: "/cek-kartu" },
+    { title: "Keanggotaan", icon: <FaPeopleGroup />, path: "/keanggotaan" },
   ];
 
   return (

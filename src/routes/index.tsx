@@ -37,6 +37,9 @@ import DetailProduct from "@/pages/Toko/Produk/DetailProduct";
 import EditProduct from "@/pages/Toko/Produk/EditProduct";
 import LoginPage from "@/pages/Login";
 import RegisterPage from "@/pages/Register";
+import DaftarkanAnggota from "@/pages/CekKartu/DaftarkanAnggota";
+import CekKartuPage from "@/pages/CekKartu";
+import KeanggotaanPage from "@/pages/Keanggotaan";
 
 export const routes: RouteObject[] = [
   {
@@ -210,6 +213,27 @@ export const routes: RouteObject[] = [
       {
         path: "product/update/:id",
         element: <EditProduct />,
+      },
+      {
+        path: "product/detail/:id",
+        element: <DetailProduct />,
+      },
+
+
+      // Cek Kartu Page
+      {
+        path: "cek-kartu",
+        element: <CekKartuPage />,
+      },
+      {
+        path: "cek-kartu/daftar/:id",
+        element: <DaftarkanAnggota />,
+      },
+
+      // Keanggotaan Page
+      {
+        path: "keanggotaan",
+        element: <KeanggotaanPage />,
       },
       {
         path: "product/detail/:id",
