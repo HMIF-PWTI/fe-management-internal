@@ -44,7 +44,7 @@ const AbsensiPages = () => {
       try {
         setLoadingData(true);
         const response = await getKegiatanAktif();
-        setDataKegiatan(response.data.payload);
+        setDataKegiatan(response.data.payload || []);
       } catch (err) {
         console.error("Error Fetching Kegiatan Aktif", err);
       } finally {
