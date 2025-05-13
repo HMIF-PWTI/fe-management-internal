@@ -212,7 +212,7 @@ export interface Absensi {
   user: {
     id: number;
     nama: string;
-  }
+  };
   kegiatan: {
     id: number;
     nama: string;
@@ -244,4 +244,22 @@ export interface Anggota {
   partisipasi_Kegiatan: string;
   created_at: string;
   updated_at: string;
+}
+
+export interface Blog {
+  id: number;
+  image: string;
+  judul: string;
+  deskripsi: string;
+}
+
+export interface KerjaPraktek {
+  id: number;
+  nama: string;
+  alamat: string;
+}
+
+export interface CreateKerjaPraktek {
+  nama: string;
+  alamat: string;
 }

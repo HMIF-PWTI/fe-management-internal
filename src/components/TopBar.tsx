@@ -131,7 +131,16 @@ const TopBar = () => {
       return "Daftarkan Anggota";
     }
 
+    // Blog Pages
+    if (location.pathname === "/blog") return "Blog";
+    if (location.pathname === "/blog/create") return "Buat Blog";
 
+    // Info KP Pages
+    if (location.pathname === "/infokp") return "Info KP";
+    if (location.pathname === "/infokp/create") return "Buat Info KP";
+    if (matchPath("/infokp/update/:id", location.pathname)) {
+      return "Edit Info KP";
+    }
 
     return "Page Not Found";
   };

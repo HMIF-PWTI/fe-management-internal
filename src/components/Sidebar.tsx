@@ -17,9 +17,8 @@ import { FaRegCalendarCheck } from "react-icons/fa";
 import { CiPaperplane } from "react-icons/ci";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { FaRegAddressCard } from "react-icons/fa";
-
-
-
+import { FaBlog } from "react-icons/fa";
+import { IoGitNetworkOutline } from "react-icons/io5";
 
 const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -59,6 +58,8 @@ const Sidebar = () => {
     { title: "Surat", icon: <CiPaperplane />, path: "/surat" },
     { title: "Cek Kartu", icon: <FaRegAddressCard />, path: "/cek-kartu" },
     { title: "Keanggotaan", icon: <FaPeopleGroup />, path: "/keanggotaan" },
+    { title: "Blog", icon: <FaBlog />, path: "/blog" },
+    { title: "Info KP", icon: <IoGitNetworkOutline />, path: "/infokp" },
   ];
 
   return (
