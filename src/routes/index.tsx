@@ -40,6 +40,11 @@ import RegisterPage from "@/pages/Register";
 import DaftarkanAnggota from "@/pages/CekKartu/DaftarkanAnggota";
 import CekKartuPage from "@/pages/CekKartu";
 import KeanggotaanPage from "@/pages/Keanggotaan";
+import BlogPage from "@/pages/Blog";
+import CreateBlog from "@/pages/Blog/CreateBlog";
+import InfoKp from "@/pages/InfoKp";
+import CreateInfoKp from "@/pages/InfoKp/CreateInfoKp";
+import EditInfoKp from "@/pages/InfoKp/EditInfoKp";
 
 export const routes: RouteObject[] = [
   {
@@ -219,7 +224,6 @@ export const routes: RouteObject[] = [
         element: <DetailProduct />,
       },
 
-
       // Cek Kartu Page
       {
         path: "cek-kartu",
@@ -238,6 +242,30 @@ export const routes: RouteObject[] = [
       {
         path: "product/detail/:id",
         element: <DetailProduct />,
+      },
+
+      // Blog Page
+      {
+        path: "blog",
+        element: <BlogPage />,
+      },
+      {
+        path: "blog/create",
+        element: <CreateBlog />,
+      },
+
+      // Blog Page
+      {
+        path: "infokp",
+        element: <InfoKp />,
+      },
+      {
+        path: "infokp/create",
+        element: <CreateInfoKp />,
+      },
+      {
+        path: "infokp/update/:id",
+        element: <EditInfoKp />,
       },
     ],
   },
