@@ -256,6 +256,7 @@ export interface Blog {
 export interface KerjaPraktek {
   id: number;
   nama: string;
+  kota: string;
   alamat: string;
 }
 

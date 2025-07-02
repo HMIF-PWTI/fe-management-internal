@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 const EditInfoKp = () => {
   const navigate = useNavigate();
   const [nama, setNama] = useState("");
+  const [kota, setKota] = useState("");
   const [alamat, setAlamat] = useState("");
   const [loading, setLoading] = useState(false);
   const [isLoadingData, setIsLoadingData] = useState(true);
@@ -23,6 +24,7 @@ const EditInfoKp = () => {
         setIsLoadingData(true);
         const response = await getKpById(Number(id));
         setNama(response.data.payload.nama || "");
+        setKota(response.data.payload.kota || "");
         setAlamat(response.data.payload.alamat || "");
       } catch (err) {
         Swal.fire({
@@ -46,6 +48,7 @@ const EditInfoKp = () => {
     try {
       const data = {
         nama,
+        kota,
         alamat,
       };
 
@@ -99,6 +102,13 @@ const EditInfoKp = () => {
           value={nama}
           placeholder="Masukkan Nama Perusahaan"
           onChange={(e) => setNama(e.target.value)}
+        />
+        <Input
+          label="Kota"
+          variant="outlined"
+          value={kota}
+          placeholder="Masukkan Kota Perusahaan"
+          onChange={(e) => setKota(e.target.value)}
         />
         <Input
           label="Alamat Perusahaan"
