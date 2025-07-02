@@ -10,6 +10,7 @@ import Swal from "sweetalert2";
 const CreateInfoKp = () => {
   const navigate = useNavigate();
   const [nama, setNama] = useState("");
+  const [kota, setKota] = useState("");
   const [alamat, setAlamat] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -19,6 +20,7 @@ const CreateInfoKp = () => {
     try {
       const formData = new FormData();
       formData.append("nama", nama);
+      formData.append("kota", kota);
       formData.append("alamat", alamat);
       await postKp(formData);
       Swal.fire({
@@ -65,6 +67,13 @@ const CreateInfoKp = () => {
           value={nama}
           placeholder="Masukkan Nama Perusahaan"
           onChange={(e) => setNama(e.target.value)}
+        />
+        <Input
+          label="Kota"
+          variant="outlined"
+          value={kota}
+          placeholder="Masukkan Kota Perusahaan"
+          onChange={(e) => setKota(e.target.value)}
         />
         <Input
           label="Alamat Perusahaan"
