@@ -31,7 +31,9 @@ const TopBar = () => {
   }, []);
 
   const getPageTitle = () => {
-    if (location.pathname === "/") return "Dashboard";
+
+    // Dashboard Pages
+    if (location.pathname === "/dashboard") return "Dashboard";
 
     // Jabatan Pages
     if (location.pathname === "/jabatan") return "Jabatan";
