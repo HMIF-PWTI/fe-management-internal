@@ -45,6 +45,7 @@ import CreateBlog from "@/pages/Blog/CreateBlog";
 import InfoKp from "@/pages/InfoKp";
 import CreateInfoKp from "@/pages/InfoKp/CreateInfoKp";
 import EditInfoKp from "@/pages/InfoKp/EditInfoKp";
+import ProtectedLayout from "./ProtectedRoute";
 
 export const routes: RouteObject[] = [
   {
@@ -56,216 +57,224 @@ export const routes: RouteObject[] = [
     element: <RegisterPage />,
   },
 
-  // Route dengan RootLayout
+  // Protected Route
   {
     path: "/",
-    element: <RootLayout />,
+    element: <ProtectedLayout />,
     children: [
-      {
-        path: "dashboard",
-        element: <Dashboard />,
-      },
 
-      // Jabatan Route
+      // Route dengan RootLayout
       {
-        path: "jabatan",
-        element: <JabatanPages />,
-      },
-      {
-        path: "jabatan/create",
-        element: <CreateJabatan />,
-      },
-      {
-        path: "jabatan/update/:id",
-        element: <EditJabatan />,
-      },
+        path: "/",
+        element: <RootLayout />,
+        children: [
+          {
+            path: "dashboard",
+            element: <Dashboard />,
+          },
 
-      // Divisi Route
-      {
-        path: "divisi",
-        element: <DivisiPages />,
-      },
-      {
-        path: "divisi/create",
-        element: <CreateDivisi />,
-      },
-      {
-        path: "divisi/update/:id",
-        element: <EditDivisi />,
-      },
+          // Jabatan Route
+          {
+            path: "jabatan",
+            element: <JabatanPages />,
+          },
+          {
+            path: "jabatan/create",
+            element: <CreateJabatan />,
+          },
+          {
+            path: "jabatan/update/:id",
+            element: <EditJabatan />,
+          },
 
-      // Jenis Kegiatan Route
-      {
-        path: "jeniskegiatan",
-        element: <JenisKegiatanPages />,
-      },
-      {
-        path: "jeniskegiatan/create",
-        element: <CreateJenisKegiatan />,
-      },
-      {
-        path: "jeniskegiatan/update/:id",
-        element: <EditJenisKegiatan />,
-      },
+          // Divisi Route
+          {
+            path: "divisi",
+            element: <DivisiPages />,
+          },
+          {
+            path: "divisi/create",
+            element: <CreateDivisi />,
+          },
+          {
+            path: "divisi/update/:id",
+            element: <EditDivisi />,
+          },
 
-      // Kegiatan Route
-      {
-        path: "kegiatan",
-        element: <KegiatanPages />,
-      },
-      {
-        path: "kegiatan/create",
-        element: <CreateKegiatan />,
-      },
-      {
-        path: "kegiatan/update/:id",
-        element: <EditKegiatan />,
-      },
-      {
-        path: "kegiatan/detail/:id",
-        element: <DetailKegiatan />,
-      },
+          // Jenis Kegiatan Route
+          {
+            path: "jeniskegiatan",
+            element: <JenisKegiatanPages />,
+          },
+          {
+            path: "jeniskegiatan/create",
+            element: <CreateJenisKegiatan />,
+          },
+          {
+            path: "jeniskegiatan/update/:id",
+            element: <EditJenisKegiatan />,
+          },
 
-      // Jenis Keuangan Route
-      {
-        path: "jeniskeuangan",
-        element: <JenisKeuanganPages />,
-      },
-      {
-        path: "jeniskeuangan/create",
-        element: <CreateJenisKeuangan />,
-      },
-      {
-        path: "jeniskeuangan/update/:id",
-        element: <EditJenisKeuangan />,
-      },
+          // Kegiatan Route
+          {
+            path: "kegiatan",
+            element: <KegiatanPages />,
+          },
+          {
+            path: "kegiatan/create",
+            element: <CreateKegiatan />,
+          },
+          {
+            path: "kegiatan/update/:id",
+            element: <EditKegiatan />,
+          },
+          {
+            path: "kegiatan/detail/:id",
+            element: <DetailKegiatan />,
+          },
 
-      // Keuangan Route
-      {
-        path: "keuangan",
-        element: <KeuanganPages />,
-      },
-      {
-        path: "keuangan/create",
-        element: <CreateKeuangan />,
-      },
-      {
-        path: "keuangan/update/:id",
-        element: <EditKeuangan />,
-      },
-      {
-        path: "keuangan/detail/:id",
-        element: <DetailKeuangan />,
-      },
+          // Jenis Keuangan Route
+          {
+            path: "jeniskeuangan",
+            element: <JenisKeuanganPages />,
+          },
+          {
+            path: "jeniskeuangan/create",
+            element: <CreateJenisKeuangan />,
+          },
+          {
+            path: "jeniskeuangan/update/:id",
+            element: <EditJenisKeuangan />,
+          },
 
-      // Barang Route
-      {
-        path: "barang",
-        element: <BarangPages />,
-      },
-      {
-        path: "barang/create",
-        element: <CreateBarang />,
-      },
-      {
-        path: "barang/update/:id",
-        element: <EditBarang />,
-      },
-      {
-        path: "barang/detail/:id",
-        element: <DetailBarang />,
-      },
+          // Keuangan Route
+          {
+            path: "keuangan",
+            element: <KeuanganPages />,
+          },
+          {
+            path: "keuangan/create",
+            element: <CreateKeuangan />,
+          },
+          {
+            path: "keuangan/update/:id",
+            element: <EditKeuangan />,
+          },
+          {
+            path: "keuangan/detail/:id",
+            element: <DetailKeuangan />,
+          },
 
-      // Toko Route
-      {
-        path: "toko",
-        element: <TokoPages />,
-      },
+          // Barang Route
+          {
+            path: "barang",
+            element: <BarangPages />,
+          },
+          {
+            path: "barang/create",
+            element: <CreateBarang />,
+          },
+          {
+            path: "barang/update/:id",
+            element: <EditBarang />,
+          },
+          {
+            path: "barang/detail/:id",
+            element: <DetailBarang />,
+          },
 
-      // Absensi Route
-      {
-        path: "absensi",
-        element: <AbsensiPages />,
-      },
+          // Toko Route
+          {
+            path: "toko",
+            element: <TokoPages />,
+          },
 
-      // Surat Pages
-      {
-        path: "surat",
-        element: <SuratPages />,
-      },
-      {
-        path: "surat/create",
-        element: <CreateSurat />,
-      },
-      {
-        path: "surat/update/:id",
-        element: <EditSurat />,
-      },
-      {
-        path: "surat/detail/:id",
-        element: <DetailSurat />,
-      },
+          // Absensi Route
+          {
+            path: "absensi",
+            element: <AbsensiPages />,
+          },
 
-      // Product Page
-      {
-        path: "product",
-        element: <ProductPage />,
-      },
-      {
-        path: "product/create",
-        element: <CreateProduct />,
-      },
-      {
-        path: "product/update/:id",
-        element: <EditProduct />,
-      },
-      {
-        path: "product/detail/:id",
-        element: <DetailProduct />,
-      },
+          // Surat Pages
+          {
+            path: "surat",
+            element: <SuratPages />,
+          },
+          {
+            path: "surat/create",
+            element: <CreateSurat />,
+          },
+          {
+            path: "surat/update/:id",
+            element: <EditSurat />,
+          },
+          {
+            path: "surat/detail/:id",
+            element: <DetailSurat />,
+          },
 
-      // Cek Kartu Page
-      {
-        path: "cek-kartu",
-        element: <CekKartuPage />,
-      },
-      {
-        path: "cek-kartu/daftar/:id",
-        element: <DaftarkanAnggota />,
-      },
+          // Product Page
+          {
+            path: "product",
+            element: <ProductPage />,
+          },
+          {
+            path: "product/create",
+            element: <CreateProduct />,
+          },
+          {
+            path: "product/update/:id",
+            element: <EditProduct />,
+          },
+          {
+            path: "product/detail/:id",
+            element: <DetailProduct />,
+          },
 
-      // Keanggotaan Page
-      {
-        path: "keanggotaan",
-        element: <KeanggotaanPage />,
-      },
-      {
-        path: "product/detail/:id",
-        element: <DetailProduct />,
-      },
+          // Cek Kartu Page
+          {
+            path: "cek-kartu",
+            element: <CekKartuPage />,
+          },
+          {
+            path: "cek-kartu/daftar/:id",
+            element: <DaftarkanAnggota />,
+          },
 
-      // Blog Page
-      {
-        path: "blog",
-        element: <BlogPage />,
-      },
-      {
-        path: "blog/create",
-        element: <CreateBlog />,
-      },
+          // Keanggotaan Page
+          {
+            path: "keanggotaan",
+            element: <KeanggotaanPage />,
+          },
+          {
+            path: "product/detail/:id",
+            element: <DetailProduct />,
+          },
 
-      // Blog Page
-      {
-        path: "infokp",
-        element: <InfoKp />,
-      },
-      {
-        path: "infokp/create",
-        element: <CreateInfoKp />,
-      },
-      {
-        path: "infokp/update/:id",
-        element: <EditInfoKp />,
+          // Blog Page
+          {
+            path: "blog",
+            element: <BlogPage />,
+          },
+          {
+            path: "blog/create",
+            element: <CreateBlog />,
+          },
+
+          // Blog Page
+          {
+            path: "infokp",
+            element: <InfoKp />,
+          },
+          {
+            path: "infokp/create",
+            element: <CreateInfoKp />,
+          },
+          {
+            path: "infokp/update/:id",
+            element: <EditInfoKp />,
+          },
+        ],
       },
     ],
   },

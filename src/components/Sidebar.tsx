@@ -41,7 +41,7 @@ const Sidebar = () => {
   }, []);
 
   const menuItems = [
-    { title: "Dashboard", icon: <MdDashboard />, path: "/" },
+    { title: "Dashboard", icon: <MdDashboard />, path: "/dashboard" },
     { title: "Jabatan", icon: <MdWork />, path: "/jabatan" },
     { title: "Divisi", icon: <MdPeople />, path: "/divisi" },
     { title: "Jenis Kegiatan", icon: <FiActivity />, path: "/jeniskegiatan" },
