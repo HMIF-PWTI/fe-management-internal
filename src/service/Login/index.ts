@@ -3,10 +3,13 @@ import axios from "axios";
 const API_BASE_URL = import.meta.env.VITE_URL_BASE_API;
 
 interface login {
-  username: string;
+  username?: string;
+  email?: string;
   password: string;
 }
+
 export const postLogin = async (data: login | FormData) => {
+  // Mengembalikan full object response dari Axios
   const response = await axios.post(`${API_BASE_URL}/login`, data, {});
   return response;
 };
